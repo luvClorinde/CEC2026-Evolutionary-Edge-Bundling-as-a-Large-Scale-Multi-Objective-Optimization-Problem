@@ -10,22 +10,23 @@ pc名を変える
 # density_estimator 
 jmetalpy util　主にSPEA2のため
 
-class KNNDE def cde
-def compute_density_estimator(self, solutions: List[S]):
-    solutions_size = len(solutions)
-    if solutions_size <= self.k:
-        return
+class KNNDE
 
-    # Compute distance matrix using vectorized cdist
-    from scipy.spatial.distance import cdist
-    obj_matrix = numpy.array([s.objectives for s in solutions])
-    self.distance_matrix = cdist(obj_matrix, obj_matrix, metric='euclidean')
+    def compute_density_estimator(self, solutions: List[S]):
+        solutions_size = len(solutions)
+        if solutions_size <= self.k:
+            return
     
-
-    # Assign knn_density attribute
-    for i in range(solutions_size):
-        distances = list(self.distance_matrix[i])
-        distances.sort()
-        solutions[i].attributes["knn_density"] = distances[self.k]
+        # Compute distance matrix using vectorized cdist
+        from scipy.spatial.distance import cdist
+        obj_matrix = numpy.array([s.objectives for s in solutions])
+        self.distance_matrix = cdist(obj_matrix, obj_matrix, metric='euclidean')
+        
+    
+        # Assign knn_density attribute
+        for i in range(solutions_size):
+            distances = list(self.distance_matrix[i])
+            distances.sort()
+            solutions[i].attributes["knn_density"] = distances[self.k]
 
 置き換えれば完了
