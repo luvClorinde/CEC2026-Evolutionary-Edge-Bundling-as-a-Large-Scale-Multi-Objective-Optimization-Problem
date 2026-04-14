@@ -16,15 +16,6 @@ def compute_density_estimator(self, solutions: List[S]):
     if solutions_size <= self.k:
         return
 
-    """# Compute distance matrix 
-    高速化のため変更
-    self.distance_matrix = numpy.zeros(shape=(solutions_size, solutions_size))
-    for i in range(solutions_size):
-        for j in range(solutions_size):
-            self.distance_matrix[i, j] = self.distance_matrix[j, i] = euclidean(
-                solutions[i].objectives, solutions[j].objectives
-            )"""
-
     # Compute distance matrix using vectorized cdist
     from scipy.spatial.distance import cdist
     obj_matrix = numpy.array([s.objectives for s in solutions])
