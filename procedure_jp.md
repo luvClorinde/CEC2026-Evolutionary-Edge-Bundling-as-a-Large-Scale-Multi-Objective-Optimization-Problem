@@ -10,8 +10,8 @@ pc名を変える
 # density_estimator 
 jmetalpy util　主にSPEA2のため
 
-class KNNDE
-
+    # class KNNDE
+    
     def compute_density_estimator(self, solutions: List[S]):
         solutions_size = len(solutions)
         if solutions_size <= self.k:
